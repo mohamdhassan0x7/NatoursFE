@@ -30,11 +30,11 @@ export default function AppLayout() {
 
 
   return (
-    <div >
+    <div className='flex flex-col min-h-screen' >
       <userContext.Provider value={{userData, setUserData}}>
         {isLoading && <Loader/>}
         {userData && <NavBar pathname={pathname} isScrolled={isScrolled}></NavBar>}
-        <main className=''>
+        <main className='flex-grow'>
           <Outlet/>
         </main>
       </userContext.Provider>
@@ -59,8 +59,8 @@ export function useUserContext(){
 
 const Footer = () => {
   return (
-    <footer className="bg-green-500 text-white py-4 mb-0">
-      <div className="container mx-auto px-4">
+    <footer className="bg-green-500 text-white py-4  w-full">
+      <div className="container mx-auto px-4 ">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <p className='text-white text-4xl font-dancing tracking-wide font-light'>Natours</p>

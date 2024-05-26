@@ -2,8 +2,9 @@ import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 
 const isExpired = () => {
-  const token = Cookies.get("jwt");
-  console.log("token :", token);
+  // debugger
+  const token = localStorage.getItem("jwt") ;
+  // console.log("token :", token);
   let res = null;
 
   if (!token) {

@@ -40,6 +40,7 @@ export async function logIn(userData) {
 
 export async function logOut() {
   localStorage.removeItem('user')
+  localStorage.removeItem('jwt')
     const res = await axios
       .get('auth/logout', {
         headers: {
@@ -353,11 +354,11 @@ export async function addToBooking(tourId){
       },
     })
     .then((response) => {
-      console.log("addToBooking successful:", response);
+      // console.log("addToBooking successful:", response);
       return response;
     })
     .catch((error) => {
-      console.error("addToBooking failed:", error);
+      // console.error("addToBooking failed:", error);
       return error
     });
     return res;

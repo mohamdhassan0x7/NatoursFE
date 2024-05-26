@@ -189,6 +189,6 @@ export default function Home() {
 
 export async function homeLoader(){
   const res = await topFiveTours()
-  console.log(res)
+  // console.log(res)
   return res.data.data.tours
 }

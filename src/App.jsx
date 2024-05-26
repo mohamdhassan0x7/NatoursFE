@@ -61,7 +61,7 @@ import Error404 from './Features/UI/Error404';
               element: <Login/>,
               action: logInAction
             },{
-              path: '/*',
+              path: '*',
               element: <Error404/>
             }
         ]
@@ -71,8 +71,9 @@ import Error404 from './Features/UI/Error404';
 
 function App() {
   return (
-        <RouterProvider router = {router}  ></RouterProvider>
+      <RouterProvider router = {router}  ></RouterProvider>
     )
 }
 export default App;
+
 

@@ -420,7 +420,7 @@ function Remove({tour, listName, reviewId, data, setData}) {
     if(listName === 'Booking'){
       setloading(true)
       const res = await removeTourFromBooking({tourId:tour._id})
-      console.log(res)
+      // console.log(res)
       setloading(false)
       if(res.status === 200){
         setData(data.filter((item) => item._id !== tour._id))
@@ -428,7 +428,7 @@ function Remove({tour, listName, reviewId, data, setData}) {
     }else if(listName === 'WishList'){
       setloading(true)
       const res = await removeTourFromWishList({tourId:tour._id})
-      console.log(res)
+      // console.log(res)
       setloading(false)
       if(res.status === 200){
         setData(data.filter((item) => item._id !== tour._id))
@@ -436,7 +436,7 @@ function Remove({tour, listName, reviewId, data, setData}) {
     }else if(listName === 'Reviews'){
       setloading(true)
       const res = await removeReview(reviewId)
-      console.log(res)
+      // console.log(res)
       setloading(false)
       if(res.status === 200){
         setData(data.filter((item) => item._id !== reviewId))
@@ -589,7 +589,7 @@ function EditReview({review, allReviews, setReviews}) {
   const [error, seterror] = useState(null)
   const [done, setdone] = useState(null)
   async function handleReq(e){
-    console.log(e.target.review.value)
+    // console.log(e.target.review.value)
     if(e.target.rating.value == review.rating && e.target.review.value == ""){
       e.preventDefault()
       setdone(null)
@@ -718,7 +718,7 @@ export async function BookingLoader(){
 
 export async function WishListLoader(){
   const res = await getWishList()
-  console.log(res.data.data.wishList)
+  // console.log(res.data.data.wishList)
   if(res.data) return res.data.data.wishList
   else return null
 }
@@ -733,7 +733,7 @@ export async function ReviewsLoader(){
 export async function ReviewAction({request}){
   const formData = await request.formData()
   const review = Object.fromEntries(formData);
-  console.log(review)
+  // console.log(review)
   const reviewId = review.reviewId
   delete review.reviewId
   const res = await editReview(reviewId, review)

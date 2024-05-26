@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import boat from '../../assets/boat.jpg'
-import { Form, useActionData, useParams } from 'react-router-dom';
+import { Form, Navigate, useActionData, useParams } from 'react-router-dom';
 import Review from '../UI/Review';
 import { addReview, getOneTour } from '../../Services/apiTour';
 import { IsInMyBooking, IsInMyWishList, addToBooking, addToWishList, getWishList, removeTourFromBooking, removeTourFromWishList } from '../../Services/apiUser';
+import Error404 from '../UI/Error404';
 export default function TourPage() {
 
     const [loading, setloading] = useState(false)
     const [tour, settour] = useState(null)
-    const [rate, setRate] = useState(0)
+    const [rate, setRate] = useState(1)
     const id = useParams().id
     const [isVisible, setIsVisible] = useState(true);
 
@@ -25,8 +25,11 @@ export default function TourPage() {
         const wish = await IsInMyWishList(id)
         setWished(wish.data.data.isInWishlist)
         setloading(false)
-        settour(res.data.data.tour)
-        console.log(res.data.data.tour)
+        if(res.status === 200)
+            settour(res?.data?.data?.tour)
+        else
+            settour(res.response.data.status)
+        // console.log(res.data.data.tour)
     }
     
 
@@ -52,9 +55,9 @@ export default function TourPage() {
         if(addComment!=="empty" && addComment!=="Error" && addComment!==null && addComment!==undefined){
             settour({...tour, reviews: addComment})
             document.getElementById('review').value = ""
-            setRate(0)
-            console.log("reviews changed")
-            console.log(addComment)
+            setRate(1)
+            // console.log("reviews changed")
+            // console.log(addComment)
         }
     }, [addComment])
     
@@ -74,6 +77,7 @@ export default function TourPage() {
                 <i class="fa-solid fa-compass fa-spin text-7xl text-green-600"></i>
     </div> 
     :
+    tour != 'error'?
     <div className='m-10 mt-24  rounded-lg overflow-hidden'>
         <div className='grid grid-cols-2 gap-x-5 bg-stone-100 '>
             <div className='col-span-2 lg:col-span-1 p-5'>
@@ -264,6 +268,8 @@ export default function TourPage() {
             </div>
         </div>
     </div>
+    :
+    <Error404></Error404>
 }
     </>
   )
@@ -388,7 +394,7 @@ const RatingStars = ({rate, setRate}) => {
 export async function action({request}){
     const formData = await request.formData()
     const review = Object.fromEntries(formData);
-    console.log(review)
+    // console.log(review)
     if(review.rating == '0' && review.review == "") {
         return "empty"
     }

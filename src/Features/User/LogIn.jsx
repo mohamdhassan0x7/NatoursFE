@@ -40,6 +40,7 @@ export default function SignUp() {
           className="absolute inset-0 bg-cover bg-center w-full h-full"
           style={{
             backgroundImage: `url('${HomeImg2}')`,
+            position: 'fixed',
             filter: 'blur(1px)', // Adjust the blur intensity as needed
             zIndex: '-1', // Ensure the background stays behind other content
           }}
@@ -122,10 +123,8 @@ export async function action({request}){
     return {errorType:"formValidation",errors}
   }
   const axiosRes = await logIn(userData)
-  console.log(axiosRes)
-  // localStorage.setItem('user', JSON.stringify(axiosRes?.data.User))
-  console.log(axiosRes.headers)
   if(axiosRes?.status === 200){
+    localStorage.setItem('jwt', JSON.stringify(axiosRes?.data.token))
     return{
       user: axiosRes?.data.User,
       redirect: '/'

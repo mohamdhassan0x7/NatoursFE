@@ -19,7 +19,7 @@ export default function SignUp() {
       
       setFormErrors({})
       setAxiosError(false)
-      console.log(res.redirect)
+      // console.log(res.redirect)
       navigation(res.redirect)
     }
   }, [res])
@@ -31,11 +31,12 @@ export default function SignUp() {
   const inputClass = "p-2 border input-border rounded-md focus:ring focus:ring-green-200 focus:outline-none"
   const labelClass = "text-sm font-medium text-gray-700 mb-1"
   return (
-    <div className='sm:m-12 md:mt-24 md:flex md:justify-between gap-x-4'>
+    <div className='sm:m-12 md:mt-14 md:flex md:justify-between gap-x-4 '>
        <div
-          className="absolute inset-0 bg-cover bg-center w-full h-full"
+          className="absolute inset-0 bg-cover bg-center w-full"
           style={{
             backgroundImage: `url('${boat}')`,
+            position: 'fixed',
             filter: 'blur(1px)', // Adjust the blur intensity as needed
             zIndex: '-1', // Ensure the background stays behind other content
           }}
@@ -158,7 +159,7 @@ export default function SignUp() {
 function validateForm ({firstName, lastName, email, password, passwordConfirem, image}){
   const errors = {};
 
-  console.log(image)
+  // console.log(image)
   if (!/^[a-zA-Z]+$/.test(firstName)) {
     errors.firstName = 'First name must contain only letters';
   }

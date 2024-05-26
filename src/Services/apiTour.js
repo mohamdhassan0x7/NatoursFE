@@ -8,7 +8,7 @@
 import axios from '../../Axios.config'
 
 export async function getTours(data){
-    console.log("DATA >>",data)
+    // console.log("DATA >>",data)
     let reqUrl = `tours`
     if(data.duration){
         if(reqUrl === 'tours') reqUrl = 'tours?'
@@ -38,7 +38,7 @@ export async function getTours(data){
         if(reqUrl === 'tours') reqUrl = 'tours?'
         reqUrl = reqUrl + `&name=${data.name}`
     }
-    console.log("URL >> ",reqUrl)
+    // console.log("URL >> ",reqUrl)
     const res = await axios
       .get(reqUrl, {
         headers: {

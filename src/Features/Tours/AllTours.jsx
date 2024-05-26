@@ -221,7 +221,7 @@ export default function AllTours() {
     }
     useEffect(() => {
       setdata({...data, maxValuePrice:value[1], minValuePrice:value[0]})
-      console.log("max" ,data.maxValuePrice,"min", data.minValuePrice)
+    //   console.log("max" ,data.maxValuePrice,"min", data.minValuePrice)
     }, [value])
 
 
@@ -231,7 +231,7 @@ export default function AllTours() {
             setloading(true)
             const res = await getTours(data);
             setloading(false)
-            console.log(res.data.data.tours)
+            // console.log(res.data.data.tours)
             setMyTours(res.data.data.tours)
             setmaxPrice(res.data.maxPrice)
             setminPrice(res.data.minPrice)
