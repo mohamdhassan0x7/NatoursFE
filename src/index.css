@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .primary-text {
+    --c : theme(colors.green.800);
+    color: var(--c);
+    --font:theme(fontFamily.urbanist);
+    font-family:var(--font) ;
+  }
+  .secondary-text {
+    --c : theme(colors.stone.600);
+    color: var(--c);
+    --font:theme(fontFamily.urbanist);
+    font-family:var(--font) ;
+  }
+
+  .input-border{
+    --c : theme(colors.stone.200);
+    border-color: var(--c) !important;
+  }
+  .input-border-warning{
+    --c : theme(colors.red.300);
+    border-color: var(--c) !important;
+  }
+
+  .loader {
+    width: 45px;
+    aspect-ratio: 0.75;
+    --c: no-repeat linear-gradient(theme(colors.stone.50) 0 0);
+    background: var(--c) 0% 50%, var(--c) 50% 50%, var(--c) 100% 50%;
+    background-size: 20% 50%;
+    animation: loading 1s infinite linear;
+  }
+
+  /* Customize the label (the container) */
+.container {
+  position: relative;
+  padding-left: 20px;
+  cursor: pointer;
+  --fontSize:theme(fontSize.base);
+  font-size: var(--fontSize);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  --c : theme(colors.green.800);
+  background-color: var(--c);
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+  top: 5px;
+  left: 5px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: white;
+}
+
+.lds-ripple,
+.lds-ripple div {
+  box-sizing: border-box;
+}
+
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 160px; /* Increased from 80px to 160px */
+  height: 160px; /* Increased from 80px to 160px */
+  --color: theme(colors.green.800);
+  color: var(--color);
+}
+
+.lds-ripple div {
+  position: absolute;
+  border: 8px solid currentColor; /* Increased from 4px to 8px */
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+
+@keyframes lds-ripple {
+  0% {
+    top: 72px; /* Adjusted for new size */
+    left: 72px; /* Adjusted for new size */
+    width: 16px; /* Adjusted for new size */
+    height: 16px; /* Adjusted for new size */
+    opacity: 0;
+  }
+  4.9% {
+    top: 72px; /* Adjusted for new size */
+    left: 72px; /* Adjusted for new size */
+    width: 16px; /* Adjusted for new size */
+    height: 16px; /* Adjusted for new size */
+    opacity: 0;
+  }
+  5% {
+    top: 72px; /* Adjusted for new size */
+    left: 72px; /* Adjusted for new size */
+    width: 16px; /* Adjusted for new size */
+    height: 16px; /* Adjusted for new size */
+    opacity: 1;
+  }
+  100% {
+    top: 0;
+    left: 0;
+    width: 160px; /* Adjusted for new size */
+    height: 160px; /* Adjusted for new size */
+    opacity: 0;
+  }
+}
+.btn-close:focus {
+  --color: theme(colors.green.300);
+  outline: solid 4px var(--color) !important;
+}
+
+.underline-from-right {
+  position: relative;
+  display: inline-block;
+}
+.underline-from-right::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+.underline-from-right:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+}
